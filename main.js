@@ -42,8 +42,36 @@ var game = {
         }
     },
 
-    loadQuestion: function(){
-        timer = setInterval
+    loadQuestion: function() {
+        timer = setInterval(game.countdown, 1000);
+        panel.html("<h2>" + questions[this.currentQuestion].question + "</h2>");
+        for (var i = 0; i < questions[this.currentQuestion].answers.length; i++)
+        {
+            panel.append("<button class='answer-button' id='button' data-name=' " +
+            questions[this.currentQuestion].answer[i] +
+            "'>" + questions[this.currentQuestion].answers[i] + "</button>");
+        }
+    },
+
+    nextQuestion: function() {
+        game.counter = countStartNumber;
+        $("#counter-number").html(game.counter);
+        game.currentQuestion++;
+        game.loadQuestion();
+    },
+
+    timeUp: function() {
+        clearInterval(timer);
+
+        $("#counter-number").html(game.counter);
+
+        panel.html("<h2> Out of Time </h2>");
+        panel.append("<h3> The correct answer was: " + questions[this.loadQuestion.currentQuestion].correctAnswer);
+        panel
+        
+        
     }
+
+
 
 }
