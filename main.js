@@ -66,11 +66,61 @@ var game = {
         $("#counter-number").html(game.counter);
 
         panel.html("<h2> Out of Time </h2>");
-        panel.append("<h3> The correct answer was: " + questions[this.loadQuestion.currentQuestion].correctAnswer);
-        panel
+        panel.append("<h3> The correct answer was: </h3>" + questions[this.loadQuestion.currentQuestion].correctAnswer);
+        panel.append("<img scr= " + this.questions[this.currentQuestion].image);
+
+        if(game.currentQuestion ===questions.length -1)
+        {
+            setTimeout(game.results, 3*1000);
+        }
+        else
+        {
+            setTimeout(game.nextQuestion, 3*1000);
+
+        }
+        
+    },
+
+    results: function(){
+
+        clearInterval(timer);
+        panel.html("<h2>All done, here's how you did!</h2>");
+        $("counter-number").html(game.counter);
+
+        panel.append("<h3>Correct Answers:" + game.correct + "</h3>");
+        panel.append("<h3>Incorrect Answers:" +game.incorrect + "</h3>");
+        panel.append("<h3>Unanswered:" +(questions.length = game.correct + game.incorrect)) + "</h3>);"
+        panel.append("<br><button id ='start-over' > Start Over?</button>");
+    },
+
+    clicked: function(e){
+        clearInterval(timer);
+        IDBCursor($(e.target).attr("data-"))
+    },
+
+    answeredIncorrectly :function(){
+        game.Incorrect++;
+        clearInterval(timer);
+        panel.html("<h2>NOPE</h2>")
+        panel.append("<h3> The correct answer was:" + question[game.correctAnswer].correctAnswer + "</h3>")
+        panel.append("<img = scr'" + questions[game.currentQuestion].image +"/>")
+
+        if(game.currentQuestion === questions.length -1)
+        {
+            setTimeout(game.results, 3 * 1000);
+
+        }
+        else
+        {
+            setTimeout(game.realQuestion, 3 * 1000);
+        },
+
+        answeredCorrectly : function()
+        panel.html("<h2>CORRECT</h2>")
         
         
     }
+    
 
 
 
