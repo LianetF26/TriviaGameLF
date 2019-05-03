@@ -113,15 +113,39 @@ var game = {
         else
         {
             setTimeout(game.realQuestion, 3 * 1000);
-        },
+        }
+    },
+        answeredCorrectly : function(){
+            game.correct++;
+            clearInterval(timer);
 
-        answeredCorrectly : function()
-        panel.html("<h2>CORRECT</h2>")
-        
-        
-    }
-    
+         panel.html("<h2>CORRECT</h2>");
+         panel.append("<img scr= " + this.questions[this.currentQuestion].image + "/>");
 
+         if (game.currentQuestion === questions.length -1)
+         {
+            setTimeout(game.results, 3 * 1000);
 
+         }
+         else{
+             setTimeout(game.realQuuestion, 3 * 1000);
+         }
+     },
 
-}
+     reset: function(){
+         this.currentQuestion = 0;
+         this.counter = countStartNumber;
+         this.correct = 0;
+         this.Incorrect = 0;
+         this.loadQuestion()
+     }
+
+};
+//Click Events
+//-----------------------------------------------------------------------------------------------------
+$(document).on("click","start over",function() {
+    game.reset();
+});
+$(document).on("click",".answerbutton",function() {
+    game.clicked(e),
+});
